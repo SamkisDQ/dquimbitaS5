@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dquimbitaS5.Views.vPersona"
+             Title="vPersona">
+    <ScrollView>
+        <VerticalStackLayout>
+
+
+        <Image Source="logouisrael2.png"
+             Aspect= "Center"></Image>
+        <Label
+          Text=" SEMANA 5: BASE DE DATOS"
+          FontSize="20"
+          HorizontalTextAlignment="Center"/>
+        <Label
+          Text=" INGRESE UN NOMBRE"
+          FontSize="20"
+          HorizontalTextAlignment="Center"/>
+
+        <Entry x:Name=" txtPersona"
+             Placeholder="Ingrese un Nombre"/>
+
+        <Grid Padding="8" RowSpacing="2" >
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnAgregar"
+                  Text="Agregar Persona"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Clicked="btnAgregar_Cliked"
+                  HorizontalOptions="Center"/>
+
+            <Label x:Name="lblStatus"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 TextColor="Red"/>
+
+            <Button x:Name="btnObtener"
+                  Text="Listar Persona"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Clicked="btnObtener_Clicked"
+                  HorizontalOptions="Center"/>
+
+            <CollectionView x:Name="Listapersona"
+                          Grid.Row="3"
+                          Grid.Column="0"
+                          SelectionMode="Single"
+                          SelectionChanged="Listapersona_SelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Id}" Grid.Column="0"/>
+                            <Label Text=" " Grid.Column="0" Margin="15,9"/>
+                            <Label Text="{Binding Name}" Grid.Column="4"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <!-- Botón para actualizar una persona -->
+                        <ImageButton Source="botonmodificar.png"
+                                   x:Name="btnModificar"
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   Clicked="btnModificar_Clicked"
+                                   Aspect="Fill"
+                                   BackgroundColor="Transparent"
+                                   MaximumHeightRequest="50"
+                                   MaximumWidthRequest="40"
+                                   BorderWidth="2"
+                                   Padding="5"
+                                   />
+                     
+        
+                        <!-- Botón para eliminar una persona -->
+
+                            <ImageButton Source="data:image/png;base64,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"
+                                   x:Name="btnEliminar"
+                                   Grid.Row="3"
+                                   Grid.Column="2"
+                                   Clicked="btnEliminar_Clicked"
+                                   Aspect="Fill"
+                                   BackgroundColor="Transparent"
+                                   MaximumHeightRequest="50"
+                                   MaximumWidthRequest="50"
+                                   BorderWidth="2"
+                                   Padding="5"
+                                   />
+                    </Grid>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Grid>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
